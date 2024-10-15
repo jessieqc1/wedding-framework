@@ -653,6 +653,7 @@ section {
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: var(--unit-small);
+        min-width: 232px;
     }
 
 }
