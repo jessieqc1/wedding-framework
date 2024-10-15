@@ -50,15 +50,15 @@ CSS TABLE OF CONTENTS
 :root {
 
     /* DEFINE ALL COMMONLY USED COLORS HERE */
-    --color-body-background: rgb(0, 0, 0);
-    --color-text-body: rgba(255, 255, 255, 0.8);
-    --color-text-headings: rgb(255, 255, 255);
+    --color-body-background: rgb(255 255 255);
+    --color-text-body: rgba(0 0 0 / 0.8);
+    --color-text-headings: rgb(0 0 0 / 1);
 
     --color-links: blue;
     --color-links-hover: darkblue;
     --color-links-dark: blue;
     --color-links-darker: darkblue;
-    --color-links-light: rgb(204 204 204);
+    --color-links-light: lightblue;
     --color-links-lighter: rgba(255 255 255);
 
     --color-siteheader-background: transparent;
