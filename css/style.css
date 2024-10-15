@@ -640,6 +640,25 @@ section {
     }
 
 }
+
+
+/* CENTERED CARDS */
+
+.centered-card-group {
+    display: flex;
+    justify-content: center;
+    gap: var(--unit-small);
+
+    .centered-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: var(--unit-small);
+    }
+
+}
+
+
+
 /* --------------- */
 /* -- ANIMATION -- */
 /* --------------- */
