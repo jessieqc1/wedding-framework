@@ -83,6 +83,10 @@ CSS TABLE OF CONTENTS
     --unit-medium: 2em;
     --unit-large: 4em;
 
+    /* CARDS */
+    --info-card-width: 300px;
+    --info-card-height: 400px;
+    --card-border-radius: 10px;
 
 }
 
@@ -189,6 +193,8 @@ img {
         top: -9999px;
         left: -9999px;
     }
+
+   
 }
 
 
@@ -641,23 +647,139 @@ section {
 
 }
 
-
-/* CENTERED CARDS */
-
-.centered-card-group {
+/* ALL CARDS */
+.cards {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: var(--unit-small);
-
-    .centered-card {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: var(--unit-small);
-        min-width: 232px;
-    }
-
 }
 
+.section-heading-centered {
+    text-align: center;
+  }
+
+/* FLIP CARDS */
+
+/* OK TO USE WIDTH HERE BECAUSE IT WORKS WELL ON A BIG SCREEN. WE'RE SET TO FLEX ON A BIG SCREEN, AND FLEX NEEDS WIDTH, NOT MAX-WIDTH. */
+.flip-card {
+    background-color: transparent;
+    width: var(--info-card-width);
+    height: var(--info-card-height);
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    margin: 1em;
+    
+    img {
+      border-radius: var(--card-border-radius);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden; /* PREVENTS REVERSE IMAGE FROM SHOWING UP ON BACKSIDE */
+  }
+  
+  .flip-card-back {
+    background-color: gray;
+    color: white;
+    transform: rotateY(180deg);
+    border-radius: var(--card-border-radius);
+  }
+  
+  /* WE USE MAX-WIDTH HERE TO MAKE THE CONTENT INSIDE THIS DIV RESPONSIVE, I.E., THE IMAGE */
+  .frontside-content {
+    color: black;
+    border-radius: var(--card-border-radius);
+    max-width: var(--info-card-width);
+    height: var(--info-card-height);
+    /* SETTING THIS EMPTY PLACEHOLDER DIV TO RELATIVE SO THAT THE SUBSEQUENT THE H3 CAN BE ABSOLUTE POSITIONED TO THIS PARENT DIV. */
+    position: relative;
+    
+    h3 {
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+      text-align: center;
+      color: white;
+    }
+    
+  }
+  
+  .backside-content * {
+    padding: 30px;
+  }
+
+
+/* HOVER TRANSPARENCY CARDS */
+
+.transparent-card {
+    width: var(--info-card-width);
+    height: var(--info-card-height);
+    border-radius: var(--card-border-radius);
+    margin: 1em;
+    position: relative;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+}
+  
+.transparent-card-image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+  /*   width: var(--info-card-width);
+    height: var(--info-card-height); */
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: var(--card-border-radius);
+}
+  
+.transparent-card-label-div {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 10%;
+    text-align: center;
+    justify-content: center;
+    text-align: center;
+}
+  
+.transparent-card:hover .transparent-card-image {
+    opacity: 0.3;
+}
+  
+.transparent-card:hover .transparent-card-label-div {
+    opacity: 1;
+}
+  
+.transparent-card-label {
+    background-color: black;
+    color: white;
+    padding: 10px 32px;
+}
 
 
 /* --------------- */
