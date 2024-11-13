@@ -22,6 +22,7 @@ CSS TABLE OF CONTENTS
         # LOGO
         # SITE NAV
             # TOGGLE MENU
+            # HAMBURGER MENU
         # SITE-HEADER-ON-TOP-OF-HERO
     # MAIN
         # SECTIONS
@@ -52,17 +53,17 @@ CSS TABLE OF CONTENTS
     /* DEFINE ALL COMMONLY USED COLORS HERE */
     --color-body-background: rgb(255 255 255);
     --color-text-body: rgba(0 0 0 / 0.8);
-    --color-text-headings: rgb(0 0 0 / 1);
+    --color-text-headings: rgb(0, 57, 90);
 
-    --color-links: blue;
-    --color-links-hover: darkblue;
-    --color-links-dark: blue;
-    --color-links-darker: darkblue;
+    --color-links: rgb(250, 114, 104);
+    --color-links-hover: rgb(29, 172, 214);
+    --color-links-dark: rgb(29, 172, 214);
+    --color-links-darker: rgb(0, 57, 90);
     --color-links-light: lightblue;
     --color-links-lighter: rgba(255 255 255);
 
     --color-siteheader-background: transparent;
-    --color-siteheader-links: var(--color-text-headings);
+    --color-siteheader-links: rgb(255 255 255 /1);
 
     --color-hero-background: rgb(100 100 100);
     --color-hero-text: rgb(255 255 255 / .8);
@@ -72,6 +73,11 @@ CSS TABLE OF CONTENTS
     --color-sitefooter-text: rgb(255 255 255 / .8);
     --color-site-footer-headings: rgb(255 255 255 / 1);
     --color-sitefooter-links: rgb(255 255 255);
+
+    --color-palette-coral: rgb(250, 114, 104);
+    --color-palette-lightblue: rgb(210, 238, 247);
+    --color-palette-cerulean: rgb(29, 172, 214);
+    --color-palette-navy: rgb(0, 57, 90);
 
     /* DEFINE ALL FONTS USED HERE */
     --font-body: system-ui, Helvetica, Arial, sans-serif;
@@ -86,7 +92,14 @@ CSS TABLE OF CONTENTS
     /* CARDS */
     --info-card-width: 300px;
     --info-card-height: 400px;
+    --basic-card-width: 400px;
     --card-border-radius: 10px;
+
+    /* TIMELINE */
+    --pseudo-element-color-white: rgb(255, 255, 255);
+    --pseudo-element-color-coral: rgb(250, 114, 104);
+    --pseudo-element-color-lightblue: rgb(210, 238, 247);
+   
 
 }
 
@@ -162,8 +175,8 @@ h3 {
 }
 
 p {
-    /* LIMIT THE WIDTH OF ALL PARAGRAPHS TO 65 characters */
-    max-width: 65ch;
+    /* LIMIT THE WIDTH OF ALL PARAGRAPHS TO 65 characters. TELL CHRIS this is messing up my hero centering and paragraphs in my card sections */
+    /* max-width: 65ch; */
 
     /* TEXT WRAP TO AVOID WIDOWS AND ORPHANS */
     text-wrap: pretty;
@@ -180,7 +193,7 @@ img {
 
 /* GLOBAL HELPERS */
 
-/* need to add a top rounded and bottom rounded helper class to all my card divs */
+/* Ask Chris if I should add a top rounded and bottom rounded helper class to all my card divs */
 
 /* HIDE ELEMENTS VISUALLY BUT NOT FROM SCREEN READERS AND SEARCH ENGINES */
 .hide-visually {
@@ -391,131 +404,142 @@ body {
     display: none;
 }
 
-.toggle-menu {
 
-    /* SET TOGGLE MENU COLORS */
-    --color-togglemenu-background: green;
-    --color-togglemenu-text: yellow;
+/* ask Chris to help me with the scroll issue on a really flattened browser window */
+@media (max-width: 1200px) {
+
+    .toggle-menu {
+
+        /* SET TOGGLE MENU COLORS */
+        --color-togglemenu-background: var(--color-palette-navy);
+        --color-togglemenu-text: var(--color-palette-lightblue);
 
 
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-
-    /* SHOW MENU BUTTON IF USING TOGGLE NAV */
-    .site-menu-button {
-        display: block;
-        background-color: transparent;
-        border: 1px solid var(--color-siteheader-links);
-        color: var(--color-siteheader-links);
-        padding: .5em; 
-        position: relative;
-        z-index: 100;
-        transition: .4s all ease-out;
-
-        /* RESET BUTTON FONT SIZE TO SAME AS SITE HEADER NAV */
-        font-size: inherit;
-
-        &:hover {
-            cursor: pointer;
-        }
-
-        /* ADD SUPPORT FOR NAVICON / HAMBURGER ICON */
-        &:has(svg) {
-
-            /* VERTICALLY ALIGN THE MENU TEXT W ICON */
-            display: flex;
-            align-content: center;
-            gap: var(--unit-small);
-
-            /* REMOVE BORDER */
-            border: none;
-
-            /* SET THE COLOR OF THE SVG TO MATCH */
-            svg {
-                fill: var(--color-siteheader-links);
-            }
-
-            /* ADD SUPPORT FOR SVG ANIMATION. THIS IS NESTED INSIDE A HAS SVG ELEMENT, AND THEN THE LINE BELOW CONVEYS ALL CHILDREN OF AN SVG */
-            svg > * {
-                transition: .4s all ease-out;
-                transform-origin: center;
-            }
-
-        }
-
-    }
-
-    .site-menu {
-
-        /* SET COLORS TO TOGGLE MENU COLORS */
-        background-color: var(--color-togglemenu-background);
-
-        position: fixed;
-        top: 0;
-        right: 0;
-        z-index: 50;
-        width: 100%;
-        min-height: 100svh;
-        flex-direction: column;
-        justify-content: center;
+        display: flex;
+        flex-direction: row-reverse;
         align-items: center;
-        font-size: 3vw;
-        transition: .4s all ease-out;
 
-        a {
-            color: var(--color-togglemenu-text);
-            padding: 2vh 2vw;
-        }
-
-    }
-
-    &[data-menustate="open"] {
-
-        /* CHANGE COLORS TO TOGGLE MENU COLORS */
-        --color-siteheader-links: var(--color-togglemenu-text);
-
-        /* SET MENU BUTTON TO FIXED WHEN MENU IS OPEN */
+        /* SHOW MENU BUTTON IF USING TOGGLE NAV */
         .site-menu-button {
-            position: fixed;
+            display: block;
+            background-color: transparent;
+            border: 1px solid var(--color-siteheader-links);
+            color: var(--color-siteheader-links);
+            padding: .5em; 
+            position: relative;
             z-index: 100;
+            transition: .4s all ease-out;
+
+            /* RESET BUTTON FONT SIZE TO SAME AS SITE HEADER NAV */
+            font-size: inherit;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            /* ADD SUPPORT FOR NAVICON / HAMBURGER ICON */
+            &:has(svg) {
+
+                /* VERTICALLY ALIGN THE MENU TEXT W ICON */
+                display: flex;
+                align-content: center;
+                gap: var(--unit-small);
+
+                /* REMOVE BORDER */
+                border: none;
+
+                /* SET THE COLOR OF THE SVG TO MATCH */
+                svg {
+                    fill: var(--color-siteheader-links);
+                }
+
+                /* ADD SUPPORT FOR SVG ANIMATION. THIS IS NESTED INSIDE A HAS SVG ELEMENT, AND THEN THE LINE BELOW CONVEYS ALL CHILDREN OF AN SVG */
+                svg > * {
+                    transition: .4s all ease-out;
+                    transform-origin: center;
+                }
+
+            }
+
         }
 
-        /* SHOW THE SITE MENU WHEN OPEN */
+
         .site-menu {
-            transform: translateX(0);
+
+            /* SET COLORS TO TOGGLE MENU COLORS */
+            background-color: var(--color-togglemenu-background);
+
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 50;
+            width: 100%;
+            min-height: 100svh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5vw;
+            transition: .4s all ease-out;
+
+            a {
+                color: var(--color-togglemenu-text);
+                padding: 2vh 2vw;
+
+                &:hover {
+                    color: var(--color-links-hover);
+                }
+            }
+
         }
 
-        /* ANIMATE THE NAVICON / HAMBURGER ICON */
-        /* ADD SUPPORT FOR NAVICON / HAMBURGER ICON */
-        .site-menu-button svg {
+        &[data-menustate="open"] {
 
-            .simple-navicon-top {
-                width: 100%;
-                translate: -21% 25%; 
-                rotate: 45deg;
+            /* CHANGE COLORS TO TOGGLE MENU COLORS */
+            --color-siteheader-links: var(--color-togglemenu-text);
+
+            /* SET MENU BUTTON TO FIXED WHEN MENU IS OPEN */
+            .site-menu-button {
+                position: fixed;
+                z-index: 100;
             }
-            .simple-navicon-middle {
-                opacity: 0;
+
+            /* SHOW THE SITE MENU WHEN OPEN */
+            .site-menu {
+                transform: translateX(0);
             }
-            .simple-navicon-bottom {
-                width: 100%;
-                rotate: -45deg;
-                translate: -21% -25%;
+
+            /* ANIMATE THE NAVICON / HAMBURGER ICON */
+            /* ADD SUPPORT FOR NAVICON / HAMBURGER ICON */
+            .site-menu-button svg {
+
+                .simple-navicon-top {
+                    width: 100%;
+                    translate: -21% 25%; 
+                    rotate: 45deg;
+                }
+                .simple-navicon-middle {
+                    opacity: 0;
+                }
+                .simple-navicon-bottom {
+                    width: 100%;
+                    rotate: -45deg;
+                    translate: -21% -25%;
+                }
+            }
+        }
+
+        &[data-menustate="closed"] {
+
+            /* MOVE THE SITE MENU TO THE RIGHT WHEN CLOSED */
+            .site-menu {
+                transform: translateX(100%);
             }
         }
     }
 
-    &[data-menustate="closed"] {
-
-        /* MOVE THE SITE MENU TO THE RIGHT WHEN CLOSED */
-        .site-menu {
-            transform: translateX(100%);
-        }
-    }
 }
 
-/* IF TOGGLE MENU DISPLAY LOGO ON LEFT AND MENU ON RIGHT ON ALL SCREENS */
+/* IF TOGGLE MENU, DISPLAY LOGO ON LEFT AND MENU ON RIGHT ON ALL SCREENS */
 .site-header:has(.toggle-menu) {
     display: flex;
     justify-content: space-between;
@@ -535,9 +559,13 @@ body {
         width: 100%;
 
     /* SET SITE HEADER LINK COLOR ON LARGE SCREENS*/
-    --color-siteheader-links: var(--color-hero-headings);
+    /* --color-siteheader-links: var(--color-hero-headings); */
     a {
         color: var(--color-siteheader-links);
+
+        &:hover {
+            color: var(--color-links-dark);
+        }
     }
 
     /* ADD MORE SPACE ON TOP FOR THE ABSOLUTE HEADER */
@@ -555,16 +583,28 @@ section {
     padding: var(--unit-large) var(--unit-small);
 }
 
+section:nth-child(odd) {
+    background-color: var(--color-palette-lightblue);
+  }
+
 /* HERO SECTION*/
 
 .hero {
-    background: var(--color-hero-background);
+    /* background: var(--color-hero-background); */
+    background-image: url('https://placehold.co/2000x1500/black/blue');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
     color: var(--color-hero-text);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 
     h1 {
         font-size: 4em;
         line-height: 1;
-        text-wrap: balance;
     }
 
     h1, h2, h3 {
@@ -649,6 +689,22 @@ section {
 
 }
 
+.span-button {
+    line-height: 1.5;
+}
+    
+.span-button:hover .span-button-icon{
+    transition: 0.4s;
+    display: inline-block;
+    transform: translateX(8px);
+    color: var(--color-palette-cerulean);
+}
+
+.span-button-text {
+    font-size: 112.5%;
+    font-weight: bold;
+}
+
 /* ALL CARDS */
 .cards {
     display: flex;
@@ -658,7 +714,7 @@ section {
 
 .section-heading-centered {
     text-align: center;
-  }
+}
 
 /* FLIP CARDS */
 
@@ -677,58 +733,58 @@ section {
       object-fit: cover;
     }
     
-  }
+}
   
-  .flip-card-inner {
+.flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-  }
+}
   
-  .flip-card:hover .flip-card-inner {
+.flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
-  }
+}
   
-  .flip-card-front, .flip-card-back {
+.flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden; /* PREVENTS REVERSE IMAGE FROM SHOWING UP ON BACKSIDE */
-  }
+}
   
-  .flip-card-back {
-    background-color: rgb(0, 57, 90);
+.flip-card-back {
+    background-color: var(--color-palette-navy);
     color: white;
     transform: rotateY(180deg);
     border-radius: var(--card-border-radius);
-  }
+}
   
-  /* WE USE MAX-WIDTH HERE TO MAKE THE CONTENT INSIDE THIS DIV RESPONSIVE, I.E., THE IMAGE */
-  .frontside-content {
+/* WE USE MAX-WIDTH HERE TO MAKE THE CONTENT INSIDE THIS DIV RESPONSIVE, I.E., THE IMAGE */
+.frontside-content {
     color: black;
     border-radius: var(--card-border-radius);
     max-width: var(--info-card-width);
     height: var(--info-card-height);
     /* SETTING THIS EMPTY PLACEHOLDER DIV TO RELATIVE SO THAT THE SUBSEQUENT THE H3 CAN BE ABSOLUTE POSITIONED TO THIS PARENT DIV. */
     position: relative;
-    
+
     h3 {
-      position: absolute;
-      bottom: 0%;
-      width: 100%;
-      text-align: center;
-      color: white;
+        position: absolute;
+        bottom: 0%;
+        width: 100%;
+        text-align: center;
+        color: white;
     }
-    
-  }
+
+}
   
-  .backside-content * {
+.backside-content * {
     padding: 30px;
-  }
+}
 
 
 /* HOVER TRANSPARENCY CARDS */
@@ -768,9 +824,9 @@ section {
     justify-content: center;
     text-align: center;
 
-        h3 {
-            color:white;
-        }
+    h3 {
+        color:white;
+    }
 }
   
 .transparent-card:hover .transparent-card-image {
@@ -787,15 +843,165 @@ section {
     padding: 10px 32px;
     border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 
-        a {
-            color: var(--color-links-light);
+    a {
+        color: var(--color-links-light);
 
-            &:hover {
-                color: var(--color-links-lighter);
-            }
+        &:hover {
+            color: var(--color-links-lighter);
         }
+    }
 }
 
+/* BASIC CARDS */
+.basic-card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: var(--basic-card-width);
+    height: 100%;
+    border-radius: var(--card-border-radius); 
+    margin: 1em;
+  
+    img {
+        border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+}
+
+/* On mouse-over, add a deeper shadow */
+.basic-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+  
+/* Add some padding inside the card container */
+.basic-card-container {
+    padding: 2px 16px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+}
+
+/* TIMELINE */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  
+/* VERTICAL LINE */
+.timeline::after { /* THIS CREATES A PSEUDO ELEMENT THAT MAKES THE LINE THE LAST CHILD OF .TIMELINE */
+    content: '';
+    position: absolute;
+    width: 12px;
+    background-color: var(--pseudo-element-color-coral);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px; /* ROUGHLY HALF OF WIDTH ABOVE. THIS WILL ALWAYS BE SLIGHTLY OFF BECAUSE OF THE WAY THE CONTAINERS ARE OFFSET. TO SEE WHAT I MEAN, ADD A 1px GREEN BORDER TO .CONTAINER */
+}
+  
+/* CONTAINER AROUND EACH CONTENT RECTANGLE */
+.timeline-container {
+    padding: 10px 39px; /* CHOOSE YOUR OWN PADDING. I CHOSE A VALUE THAT MAKES THE POINTING ARROWS TOUCH THE CONTENT BOX */
+    position: relative;
+    background-color: inherit; /* THE INHERIT PROPERTY WILL MAKE SURE THAT THE .CONTAINER BACKGROUND COLOR ALWAYS MATCHES BODY BACKGROUND COLOR. THEN AGAIN, COULDN'T WE ALWAYS JUST NOT ADD A .CONTAINER BACKGROUND COLOR AT ALL? ASK CHRIS. */
+    width: 50%;
+}
+  
+/* CIRCLES ON VERTICAL LINE */
+.timeline-container::after { /* THIS CREATES A PSEUDO ELEMENT THAT MAKES THE CIRCLES THE LAST CHILD OF .CONTAINER */
+    content: '';
+    position: absolute;
+    width: 25px; /* WIDTH OF CIRCLE */
+    height: 25px; /* HEIGHT OF CIRCLE */
+    right: -17px; /* POSITIONS EVERY ODD NUMBERED 
+    CIRCLE 17px FARTHER RIGHT  */
+    background-color: var(--pseudo-element-color-white);
+    border: 4px solid var(--pseudo-element-color-coral);
+    top: 15px; /* POSITIONS CIRCLES 15px BELOW TOP EDGE OF CONTAINER BOX */
+    border-radius: 50%;
+    z-index: 1; /* ARRANGES FOR CIRCLES TO STACK ON TOP OF THE LINE */
+}
+  
+.timeline-right::after {
+    left: -16px; /* POSITIONS EVERY EVEN NUMBERED BLACK CIRCLE 16px FARTHER LEFT  */
+}
+  
+/* PLACE LEFT CONTAINERS TO THE FAR LEFT EDGE OF TIMELINE BOUNDARY*/
+.timeline-left {
+    left: 0;
+}
+  
+/* PLACE RIGHT CONTAINERS STARTING AT HALFWAY MARK OF TIMELINE BOUNDARY */
+.timeline-right {
+    left: 50%;
+}
+  
+/* LEFT CONTAINER ARROWS POINTING RIGHT */
+.timeline-left::before { /* THIS CREATES A PSEUDO ELEMENT THAT MAKES THE ARROW THE FIRST CHILD OF .LEFT */
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid red;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--pseudo-element-color-lightblue);
+}
+  
+/* RIGHT CONTAINER ARROWS POINTING LEFT */
+.timeline-right::before { /* THIS CREATES A PSEUDO ELEMENT THAT MAKES THE ARROW THE FIRST CHILD OF .RIGHT */
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--pseudo-element-color-lightblue) transparent transparent;
+}
+  
+/* CUSTOMIZING THE ACTUAL CONTENT BOX */
+.content {
+    padding: 20px 30px;
+    background-color: var(--pseudo-element-color-lightblue);
+    position: relative;
+    border-radius: 6px;
+}
+  
+@media (max-width: 600px) {
+    
+    .timeline::after {
+        left: 31px;
+    }
+        
+    .timeline-container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    }
+        
+    .timeline-container::before {
+        left: 60px;
+        border: medium solid red;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--pseudo-element-color-lightblue) transparent transparent;
+    }
+
+    .timeline-left::after, .timeline-right::after {
+        left: 15px;
+    }
+
+    .timeline-right {
+        left: 0%;
+    }
+}
 
 /* --------------- */
 /* -- ANIMATION -- */
@@ -832,3 +1038,25 @@ html {
         translate: 0 0;
     }
 }
+
+h4 {
+    margin: 0;
+}
+
+/* span {
+    border: 1px solid red;
+}
+
+* {
+    border: 1px solid orange;
+} */
+
+/* to dos
+add in custom font
+center rsvp button on mobile
+add helper class to hide "click me" for cards on large screen, visible on small screen
+fix footer
+fix envelope svg
+add row of 3 side-by-side images
+Add our "like our website?" footer
+*/
