@@ -63,7 +63,7 @@ CSS TABLE OF CONTENTS
     --color-links-lighter: rgba(255 255 255);
 
     --color-siteheader-background: transparent;
-    --color-siteheader-links: rgb(255 255 255 /1);
+    --color-siteheader-links: rgb(255 255 255 / 1);
 
     --color-hero-background: rgb(100 100 100);
     --color-hero-text: rgb(255 255 255 / .8);
@@ -193,8 +193,6 @@ img {
 
 /* GLOBAL HELPERS */
 
-/* Ask Chris if I should add a top rounded and bottom rounded helper class to all my card divs */
-
 /* HIDE ELEMENTS VISUALLY BUT NOT FROM SCREEN READERS AND SEARCH ENGINES */
 .hide-visually {
     position: absolute;
@@ -210,6 +208,18 @@ img {
     }
 
    
+}
+
+.top-rounded {
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+}
+
+.bottom-rounded {
+    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+}
+
+.all-rounded {
+    border-radius: var(--card-border-radius);
 }
 
 
@@ -405,14 +415,14 @@ body {
 }
 
 
-/* ask Chris to help me with the scroll issue on a really flattened browser window */
+/* ask CHRIS to help me with the scroll issue on a really flattened browser window */
 @media (max-width: 1200px) {
 
     .toggle-menu {
 
         /* SET TOGGLE MENU COLORS */
         --color-togglemenu-background: var(--color-palette-navy);
-        --color-togglemenu-text: var(--color-palette-lightblue);
+        --color-togglemenu-text: var(--color-siteheader-links);
 
 
         display: flex;
@@ -478,7 +488,8 @@ body {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 2.5vw;
+            /* font-size: 2.5vw; */
+            font-size: clamp(1.5em, 2.5vw, 6em);
             transition: .4s all ease-out;
 
             a {
@@ -495,7 +506,7 @@ body {
         &[data-menustate="open"] {
 
             /* CHANGE COLORS TO TOGGLE MENU COLORS */
-            --color-siteheader-links: var(--color-togglemenu-text);
+            color: var(--color-togglemenu-text);
 
             /* SET MENU BUTTON TO FIXED WHEN MENU IS OPEN */
             .site-menu-button {
@@ -559,7 +570,6 @@ body {
         width: 100%;
 
     /* SET SITE HEADER LINK COLOR ON LARGE SCREENS*/
-    /* --color-siteheader-links: var(--color-hero-headings); */
     a {
         color: var(--color-siteheader-links);
 
@@ -727,7 +737,6 @@ section:nth-child(odd) {
     margin: 1em;
     
     img {
-      border-radius: var(--card-border-radius);
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -760,13 +769,11 @@ section:nth-child(odd) {
     background-color: var(--color-palette-navy);
     color: white;
     transform: rotateY(180deg);
-    border-radius: var(--card-border-radius);
 }
   
 /* WE USE MAX-WIDTH HERE TO MAKE THE CONTENT INSIDE THIS DIV RESPONSIVE, I.E., THE IMAGE */
 .frontside-content {
     color: black;
-    border-radius: var(--card-border-radius);
     max-width: var(--info-card-width);
     height: var(--info-card-height);
     /* SETTING THIS EMPTY PLACEHOLDER DIV TO RELATIVE SO THAT THE SUBSEQUENT THE H3 CAN BE ABSOLUTE POSITIONED TO THIS PARENT DIV. */
@@ -792,7 +799,6 @@ section:nth-child(odd) {
 .transparent-card {
     width: var(--info-card-width);
     height: var(--info-card-height);
-    border-radius: var(--card-border-radius);
     margin: 1em;
     position: relative;
     
@@ -812,7 +818,6 @@ section:nth-child(odd) {
     height: var(--info-card-height); */
     transition: .5s ease;
     backface-visibility: hidden;
-    border-radius: var(--card-border-radius);
 }
   
 .transparent-card-label-div {
@@ -841,7 +846,6 @@ section:nth-child(odd) {
     background-color: rgba(0 57 90 / 0.7);
     color: white;
     padding: 10px 32px;
-    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 
     a {
         color: var(--color-links-light);
@@ -859,11 +863,9 @@ section:nth-child(odd) {
     transition: 0.3s;
     width: var(--basic-card-width);
     height: 100%;
-    border-radius: var(--card-border-radius); 
     margin: 1em;
   
     img {
-        border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -880,7 +882,6 @@ section:nth-child(odd) {
 .basic-card-container {
     padding: 2px 16px;
     background-color: rgb(255, 255, 255);
-    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 }
 
 /* TIMELINE */
@@ -968,11 +969,11 @@ section:nth-child(odd) {
 }
   
 /* CUSTOMIZING THE ACTUAL CONTENT BOX */
-.content {
+.timeline-content-box {
     padding: 20px 30px;
     background-color: var(--pseudo-element-color-lightblue);
     position: relative;
-    border-radius: 6px;
+    border-radius: var(--card-border-radius);
 }
   
 @media (max-width: 600px) {
@@ -1043,20 +1044,41 @@ h4 {
     margin: 0;
 }
 
-/* span {
-    border: 1px solid red;
-}
 
-* {
-    border: 1px solid orange;
-} */
 
 /* to dos
+
 add in custom font
 center rsvp button on mobile
+xx add helper class for rop, bottom, and all rounded border radius
 add helper class to hide "click me" for cards on large screen, visible on small screen
 fix footer
 fix envelope svg
 add row of 3 side-by-side images
 Add our "like our website?" footer
+fix the tiny bottom margin on cards
 */
+
+
+
+.image-block {
+    padding: 0;
+
+    .image-block-inner {
+        display: flex;
+
+        > * {
+            width: 100%;
+            /* max-height: 100px; */
+        }
+    }
+
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid blue;
+    }
+}
