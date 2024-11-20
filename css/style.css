@@ -415,7 +415,6 @@ body {
 }
 
 
-/* ask CHRIS to help me with the scroll issue on a really flattened browser window */
 @media (max-width: 1200px) {
 
     .toggle-menu {
@@ -478,23 +477,23 @@ body {
 
             /* SET COLORS TO TOGGLE MENU COLORS */
             background-color: var(--color-togglemenu-background);
-
             position: fixed;
             top: 0;
             right: 0;
             z-index: 50;
             width: 100%;
             min-height: 100svh;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* font-size: 2.5vw; */
-            font-size: clamp(1.5em, 2.5vw, 6em);
+            font-size: calc(1.7vw + 1.7vh);
+            /* font-size: clamp(1.5em, 2.5vw, 6em); */
             transition: .4s all ease-out;
 
             a {
                 color: var(--color-togglemenu-text);
-                padding: 2vh 2vw;
+                padding: 1vh 2vw;
 
                 &:hover {
                     color: var(--color-links-hover);
@@ -1044,23 +1043,6 @@ h4 {
     margin: 0;
 }
 
-
-
-/* to dos
-
-add in custom font
-center rsvp button on mobile
-xx add helper class for rop, bottom, and all rounded border radius
-add helper class to hide "click me" for cards on large screen, visible on small screen
-fix footer
-fix envelope svg
-add row of 3 side-by-side images
-Add our "like our website?" footer
-fix the tiny bottom margin on cards
-*/
-
-
-
 .image-block {
     padding: 0;
 
@@ -1082,3 +1064,23 @@ fix the tiny bottom margin on cards
         border: 1px solid blue;
     }
 }
+
+
+
+
+/* to dos
+
+add in custom font
+center rsvp button on mobile
+add helper class to hide "click me" for cards on large screen, visible on small screen
+fix footer
+fix envelope svg
+Add our "like our website?" footer
+fix the tiny bottom margin on cards
+add a helper class to hide "click here" on mobile for hover and flip cards
+
+done
+add helper class for top, bottom, and all rounded border radius
+add row of 3 side-by-side images
+fixed font size on mobile nav toggle menu
+*/
