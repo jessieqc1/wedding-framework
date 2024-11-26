@@ -87,25 +87,14 @@
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam at illo soluta ipsam aperiam explicabo eos aliquid doloribus repudiandae totam.</p>
                         <a class="button span-button section-heading-centered" href="#">
                             <div class="span-button-holder">
-                              <span class="span-button-text">RSVP</span>
-                              <span class="span-button-icon">
-                                <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path d="M3 7h3" />
-                            <path d="M3 11h2" />
-                            <path d="M9.02 8.801l-.6 6a2 2 0 0 0 1.99 2.199h7.98a2 2 0 0 0 1.99 -1.801l.6 -6a2 2 0 0 0 -1.99 -2.199h-7.98a2 2 0 0 0 -1.99 1.801z" />
-                            <path d="M9.8 7.5l2.982 3.28a3 3 0 0 0 4.238 .202l3.28 -2.982" />
-                          </svg>
-                              </span>
+                                <span class="span-button-text">RSVP</span>
+                                <span class="span-button-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M10.5 19h-5.5a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v4"></path>
+                                        <path d="M3 7l9 6l2.983 -1.989l6.017 -4.011"></path>
+                                        <path d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z"></path>
+                                      </svg>
+                                </span>
                             </div>
                             <span class="span-button-subtext">By February 2</span>
                         </a>
@@ -126,7 +115,7 @@
 
                 <div class="row">
                     <div class="one-half centered">
-                        <h1>This is a Heading</h1>
+                        <h1>This is a Heading of a Centered Section</h1>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam at illo soluta ipsam aperiam explicabo eos aliquid doloribus repudiandae totam.</p>
                         <img src="img/placeholder-2000x1500.svg" alt="Placeholder Image" width="2000" height="1500">
                     </div>
@@ -358,6 +347,7 @@
                     </div> <!-- two-thirds timeline -->
 
                 </div> <!-- row -->
+
             </div> <!-- container -->
         </section>
 
@@ -383,18 +373,42 @@
     <footer class="site-footer">
         <div class="container">
             <div class="row">
+
                 <div class="col-2">
+                    <svg width="100" height="100">
+                        <circle r="50" cx="50" cy="50"  fill="#888"></circle>
+                    </svg>
                     <h2>P&J</h2>
                 </div>
-                <div class="col-4">
-                    <p>Date</p>
-                    <p>Venue</p>
-                    <p>Address Line 1</p>
-                    <p>Address Line 2</p>
+
+                <div class="col-3">
+                    <h3>7.25.24</h3>
+                    <p>Koolau Ballrooms
+                        <span class="next-line">45-550 Kionaole Rd.</span>
+                        <span class="next-line">Kaneohe, HI 96744</span>
+                    </p>
                 </div>
-                <div class=".col-4 push-8">
-                    <h2>Pages</h2>
-                    <nav class="site-footer-nav">
+
+                
+                <div class="col-3">
+                    <a class="button span-button section-heading-centered" href="#">
+                        <div class="span-button-holder">
+                            <span class="span-button-text">RSVP</span>
+                            <span class="span-button-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                    <path d="M10.5 19h-5.5a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v4"></path>
+                                    <path d="M3 7l9 6l2.983 -1.989l6.017 -4.011"></path>
+                                    <path d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z"></path>
+                                    </svg>
+                            </span>
+                        </div>
+                        <span class="span-button-subtext">By February 2</span>
+                    </a>
+                </div>
+                
+                    
+                <div class="col-4">
+                    <nav class="site-footer-nav col-split">
                         <ul>
                             <li><a href="#">Our Story</a></li>
                             <li><a href="#">Event Day</a></li>
@@ -408,11 +422,13 @@
                     </nav>
                 </div>
             </div>
-            <div class="row section-heading-centered">
-                <div class="button">
-                    RSVP
+
+            <div class="row">
+                <div class="col-12 section-heading-centered">
+                    Like our website? Hire Paul and Jessie to code your 100% bespoke site!
                 </div>
             </div>
+        
         </div>
     </footer>
 

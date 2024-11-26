@@ -634,19 +634,19 @@ section:nth-child(odd) {
         color: var(--color-sitefooter-headings);
     }
 
-    a {
-        color: var(--color-links-light);
-
-        &:hover {
-            color: var(--color-links-lighter);
-        }
-    }
-
     .site-footer-nav {
         ul {
             list-style: none;
             margin: 0;
             padding: 0;
+
+            a {
+                color: var(--color-links-light);
+        
+                &:hover {
+                    color: var(--color-links-lighter);
+                }
+            }
         }
     }
 
@@ -705,7 +705,7 @@ section:nth-child(odd) {
 .span-button:hover .span-button-icon{
     transition: 0.4s;
     display: inline-block;
-    transform: translateX(8px);
+    transform: translateX(10px);
     color: var(--color-palette-cerulean);
 }
 
@@ -1072,15 +1072,40 @@ h4 {
 
 add in custom font
 center rsvp button on mobile
-fix footer
-fix envelope svg
-Add our "like our website?" footer
 fix the tiny bottom margin on cards
 add a helper class to hide "click here" on mobile for hover and flip cards
 add parallax
+Ask Chris what triggers flip or hover cards to need a click to activate - it's not the pixel size. How does the ui know it's in mobile?
+fix footer on mobile
+align horizontal top of footer
+Ask Chris how to set viewport on a picture to a slim area
 
 done
 add helper class for top, bottom, and all rounded border radius
 add row of 3 side-by-side images
 fixed font size on mobile nav toggle menu
+fix envelop svg
+arrange footer content
 */
+
+
+.span-button-icon svg {
+    margin-bottom: -3px;
+}
+
+.site-footer .next-line {
+    display: block;
+}
+
+.col-split {
+    column-span: all;
+    column-count: 2;
+}
+
+.ad-footer {
+    background-color: var(--color-palette-coral);
+    color: var(--color-sitefooter-text);
+
+    /* ADD SOME GENERAL SPACING/PADDING AROUND THE FOOTER */
+    padding: var(--unit-small);
+}
