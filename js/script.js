@@ -35,3 +35,22 @@ const mytargets = document.querySelectorAll('.observe-me');
 mytargets.forEach((el) => {
     myobserver.observe(el);
 });
+
+
+// FLIP CARDS
+
+const myflipcards = document.querySelectorAll('.flip-card');
+myflipcards.forEach((el) => {
+     // stuff happening
+    el.onclick = () => {
+        if (el.getAttribute('data-flipstate') === 'flipped') {
+      // if closed, open it    
+        el.setAttribute('data-flipstate','unflipped');
+    } else {
+      // else, close it
+        el.setAttribute('data-flipstate','flipped');
+    }
+    }
+
+  
+});

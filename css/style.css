@@ -6,8 +6,8 @@ CSS TABLE OF CONTENTS
 
 # GLOBAL STYLES
     # GLOBAL VARIABLES
-    # GLOBAL RESET
     # GLOBAL COLORS
+    # GLOBAL RESET
     # GLOBAL TYPOGRAPHY
     # GLOBAL MEDIA
     # GLOBAL HELPERS
@@ -206,8 +206,6 @@ img {
         top: -9999px;
         left: -9999px;
     }
-
-   
 }
 
 .top-rounded {
@@ -222,6 +220,9 @@ img {
     border-radius: var(--card-border-radius);
 }
 
+.centered {
+    text-align: center;
+}
 
 /* --------------------- */
 /* -------LAYOUT-------- */
@@ -664,6 +665,7 @@ section:nth-child(odd) {
     border: 1px solid var(--color-links-dark);
     background-color: var(--color-links-dark);
     color: white;
+    border-radius: var(--card-border-radius);
     
     /* ENABLE BOX MODEL STYLING  */
     display: inline-block;
@@ -721,10 +723,6 @@ section:nth-child(odd) {
     justify-content: center;
 }
 
-.section-heading-centered {
-    text-align: center;
-}
-
 /* FLIP CARDS */
 
 /* OK TO USE WIDTH HERE BECAUSE IT WORKS WELL ON A BIG SCREEN. WE'RE SET TO FLEX ON A BIG SCREEN, AND FLEX NEEDS WIDTH, NOT MAX-WIDTH. */
@@ -752,7 +750,11 @@ section:nth-child(odd) {
     transform-style: preserve-3d;
 }
   
-.flip-card:hover .flip-card-inner {
+/* .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+} */
+
+.flip-card[data-flipstate="flipped"] .flip-card-inner {
     transform: rotateY(180deg);
 }
   
@@ -1066,19 +1068,23 @@ h4 {
 }
 
 
-
+.parallax-test {
+    min-height: 300px;
+    background-image: url(../img/placeholder-2000x1500.png);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
 
 /* to dos
 
 add in custom font
 center rsvp button on mobile
 fix the tiny bottom margin on cards
-add a helper class to hide "click here" on mobile for hover and flip cards
-add parallax
-Ask Chris what triggers flip or hover cards to need a click to activate - it's not the pixel size. How does the ui know it's in mobile?
+add a badge to tell people to click or hover cards
 fix footer on mobile
 align horizontal top of footer
-Ask Chris how to set viewport on a picture to a slim area
+fix simplebase and change data navstate to closed
 
 done
 add helper class for top, bottom, and all rounded border radius
@@ -1086,6 +1092,9 @@ add row of 3 side-by-side images
 fixed font size on mobile nav toggle menu
 fix envelop svg
 arrange footer content
+Ask Chris what triggers flip or hover cards to need a click to activate - it's not the pixel size. How does the ui know it's in mobile? answer: probably pixel width? don't trust dev tools's mobile version on a computer
+add parallax
+Ask Chris how to set viewport on a picture to a slim area
 */
 
 
