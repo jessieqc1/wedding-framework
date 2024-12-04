@@ -129,6 +129,9 @@ h1, h2, h3 {
 
 a {
 
+    /* REMOVE LINK UNDERLINE */
+    text-decoration: none;
+
     /* SET THE COLOR OF ALL TEXT LINKS */
     color: var(--color-links);
 
@@ -206,6 +209,10 @@ img {
         top: -9999px;
         left: -9999px;
     }
+
+    .centered-mobile {
+        text-align: center;
+    }
 }
 
 .top-rounded {
@@ -223,6 +230,7 @@ img {
 .centered {
     text-align: center;
 }
+
 
 /* --------------------- */
 /* -------LAYOUT-------- */
@@ -301,9 +309,9 @@ body {
     .col-12 {grid-column: auto / span 12;}
 
     /* COMMONLY CENTERED COLUMNS */
-    .one-half.centered {grid-column: 4 / span 6;}
-    .one-third.centered {grid-column: 5 / span 4;}
-    .two-thirds.centered {grid-column: 3 / span 8;}
+    .one-half.centered-gridcol {grid-column: 4 / span 6;}
+    .one-third.centered-gridcol {grid-column: 5 / span 4;}
+    .two-thirds.centered-col {grid-column: 3 / span 8;}
 
     /* PUSHES */
     .push-1 {grid-column-start: 2;}
@@ -350,10 +358,6 @@ body {
     /* ADD SOME GENERAL SPACING/PADDING AROUND THE HEADER */
     padding: var(--unit-small);
 
-    /* REMOVE LINK UNDERLINES IN HEADER */
-    a {
-        text-decoration: none;
-    }
 
     /* SITE LOGO */
     .site-logo {
@@ -651,6 +655,22 @@ section:nth-child(odd) {
         }
     }
 
+    .next-line {
+        display: block;
+    }
+
+}
+
+
+.span-button-icon svg {
+    margin-bottom: -3px;
+}
+
+@media (min-width: 768px) {
+    .col-split {
+        column-span: all;
+        column-count: 2;
+    }
 }
 
 
@@ -672,8 +692,7 @@ section:nth-child(odd) {
     padding: var(--unit-small);
     margin: var(--unit-small) 0;
     
-    /* GET RID OF THE UNDERLINE */
-    text-decoration: none;
+
 
     /* TO ADD MARGIN BETWEEN A BUTTON THAT IMMEDIATELY FOLLOWS ANOTHER BUTTON, USING NESTING SYNTAX */
     + .button {
@@ -738,7 +757,6 @@ section:nth-child(odd) {
       height: 100%;
       object-fit: cover;
     }
-    
 }
   
 .flip-card-inner {
@@ -780,12 +798,13 @@ section:nth-child(odd) {
     /* SETTING THIS EMPTY PLACEHOLDER DIV TO RELATIVE SO THAT THE SUBSEQUENT THE H3 CAN BE ABSOLUTE POSITIONED TO THIS PARENT DIV. */
     position: relative;
 
-    h3 {
+    h3, h4 {
         position: absolute;
         bottom: 0%;
         width: 100%;
         text-align: center;
         color: white;
+        padding: 1em 1em 1.3em 1em;
     }
 
 }
@@ -795,7 +814,7 @@ section:nth-child(odd) {
 }
 
 
-/* HOVER TRANSPARENCY CARDS */
+/* TRANSPARENCY CARDS */
 
 .transparent-card {
     width: var(--info-card-width);
@@ -811,19 +830,17 @@ section:nth-child(odd) {
 }
   
 .transparent-card-image {
-    opacity: 1;
+    opacity: 0.3;
     display: block;
     width: 100%;
     height: auto;
-  /*   width: var(--info-card-width);
-    height: var(--info-card-height); */
     transition: .5s ease;
     backface-visibility: hidden;
 }
   
 .transparent-card-label-div {
     transition: .5s ease;
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -834,19 +851,11 @@ section:nth-child(odd) {
         color:white;
     }
 }
-  
-.transparent-card:hover .transparent-card-image {
-    opacity: 0.3;
-}
-  
-.transparent-card:hover .transparent-card-label-div {
-    opacity: 1;
-}
-  
+
 .transparent-card-label {
     background-color: rgba(0 57 90 / 0.7);
     color: white;
-    padding: 10px 32px;
+    padding: 2em;
 
     a {
         color: var(--color-links-light);
@@ -855,6 +864,14 @@ section:nth-child(odd) {
             color: var(--color-links-lighter);
         }
     }
+}
+
+.hideaway {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 /* BASIC CARDS */
@@ -903,6 +920,7 @@ section:nth-child(odd) {
     left: 50%;
     margin-left: -5px; /* ROUGHLY HALF OF WIDTH ABOVE. THIS WILL ALWAYS BE SLIGHTLY OFF BECAUSE OF THE WAY THE CONTAINERS ARE OFFSET. TO SEE WHAT I MEAN, ADD A 1px GREEN BORDER TO .CONTAINER */
 }
+
   
 /* CONTAINER AROUND EACH CONTENT RECTANGLE */
 .timeline-container {
@@ -924,11 +942,11 @@ section:nth-child(odd) {
     border: 4px solid var(--pseudo-element-color-coral);
     top: 15px; /* POSITIONS CIRCLES 15px BELOW TOP EDGE OF CONTAINER BOX */
     border-radius: 50%;
-    z-index: 1; /* ARRANGES FOR CIRCLES TO STACK ON TOP OF THE LINE */
+    z-index: 100; /* ARRANGES FOR CIRCLES TO STACK ON TOP OF THE LINE */
 }
   
 .timeline-right::after {
-    left: -16px; /* POSITIONS EVERY EVEN NUMBERED BLACK CIRCLE 16px FARTHER LEFT  */
+    left: -16px; /* POSITIONS EVERY EVEN NUMBERED CIRCLE 16px FARTHER LEFT  */
 }
   
 /* PLACE LEFT CONTAINERS TO THE FAR LEFT EDGE OF TIMELINE BOUNDARY*/
@@ -950,9 +968,12 @@ section:nth-child(odd) {
     width: 0;
     z-index: 1;
     right: 30px;
-    border: medium solid red;
+    border: medium solid white;
     border-width: 10px 0 10px 10px;
     border-color: transparent transparent transparent var(--pseudo-element-color-lightblue);
+    animation: expand-appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
 }
   
 /* RIGHT CONTAINER ARROWS POINTING LEFT */
@@ -967,6 +988,9 @@ section:nth-child(odd) {
     border: medium solid white;
     border-width: 10px 10px 10px 0;
     border-color: transparent var(--pseudo-element-color-lightblue) transparent transparent;
+    animation: expand-appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
 }
   
 /* CUSTOMIZING THE ACTUAL CONTENT BOX */
@@ -976,7 +1000,9 @@ section:nth-child(odd) {
     position: relative;
     border-radius: var(--card-border-radius);
 }
-  
+
+
+/* LEFT JUSTIFIED TIMELINE FOR SMALL SCREENS */
 @media (max-width: 600px) {
     
     .timeline::after {
@@ -1017,7 +1043,7 @@ html {
 /* ONSCROLL TRIGGERED ANIMATION */
 .observe-me {
     opacity: 0;
-    transition: all 1s ease-out .5s;
+    transition: all 1s ease-out .2s;
 
     &[data-viewstate="active"] {
         opacity: 1;
@@ -1035,7 +1061,7 @@ html {
 
 .animate-from-lowerright {
     translate: 20px 20px;
-    transition-delay: 2s;
+    transition-delay: 1s;
     &[data-viewstate="active"] {
         translate: 0 0;
     }
@@ -1068,7 +1094,7 @@ h4 {
 }
 
 
-.parallax-test {
+.parallax {
     min-height: 300px;
     background-image: url(../img/placeholder-2000x1500.png);
     background-size: cover;
@@ -1076,15 +1102,30 @@ h4 {
     background-position: center;
 }
 
+/* EXPAND ON SCROLL */
+.expand {
+    animation: expand-appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+@keyframes expand-appear {
+    0% {
+        opacity: 0;
+        scale: 0.5;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
 /* to dos
 
-add in custom font
-center rsvp button on mobile
-fix the tiny bottom margin on cards
-add a badge to tell people to click or hover cards
-fix footer on mobile
-align horizontal top of footer
+javascript click to reveal on transparent cards only working on first card
 fix simplebase and change data navstate to closed
+ask Chris why my helper classes .centered and .centered-mobile work using text-align: center, and not margin: 0 auto;
+ask Chris how to vertical center my footer items
 
 done
 add helper class for top, bottom, and all rounded border radius
@@ -1095,26 +1136,17 @@ arrange footer content
 Ask Chris what triggers flip or hover cards to need a click to activate - it's not the pixel size. How does the ui know it's in mobile? answer: probably pixel width? don't trust dev tools's mobile version on a computer
 add parallax
 Ask Chris how to set viewport on a picture to a slim area
+fix footer on mobile
+fix the tiny bottom margin on cards
 */
 
+.site-footer .row {
+    border: 1px solid red;
 
-.span-button-icon svg {
-    margin-bottom: -3px;
+    > * {
+        border: 1px solid yellow;
+   }
+
 }
 
-.site-footer .next-line {
-    display: block;
-}
 
-.col-split {
-    column-span: all;
-    column-count: 2;
-}
-
-.ad-footer {
-    background-color: var(--color-palette-coral);
-    color: var(--color-sitefooter-text);
-
-    /* ADD SOME GENERAL SPACING/PADDING AROUND THE FOOTER */
-    padding: var(--unit-small);
-}
